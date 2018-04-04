@@ -1,0 +1,22 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main2.css') }}">
+<title>Flask App</title>
+</head>
+<body>
+    <nav class="navigation">
+        <ul>
+            <li class="navitem1"><a href="{{ url_for('home') }}" title="Home">Home</a></li>
+            <li class="navitem2"><a href="{{ url_for('main') }}" title="Main">Main</a></li>
+            <li class="navitem3"><a href="{{ url_for('dolce') }}" title="Dolce">Dolce</a></li>
+            <li class="navitem4"><a href="{{ url_for('saucen') }}" title="Saucen">Saucen</a></li>
+            <li class="navitem5"><a href="{{ url_for('beilagen') }}" title="Beilagen">Beilagen</a></li>
+        </ul>
+    </nav>
+        {% block content %}
+        {% endblock %}
+</body>
+</html> 
+
