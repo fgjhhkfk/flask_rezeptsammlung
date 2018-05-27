@@ -2,42 +2,42 @@
 
 {% block content %}
 <div class="wrapper">
-        <!-- <1!-- Eingabemaske --1> -->
-        <!-- <div> -->
-        <!--     <label for="title">Title:</label> -->
-        <!--     <input type=text" name="title" id="tilte"> -->
-        <!-- </div> -->
-        <!-- <div> -->
-        <!--     <label for="conten">Content:</label> -->
-        <!--     <textarea rows="5" name="content" id="content"></textarea> -->
-        <!-- </div> -->
-        <!-- <div> -->
-        <!--     <button type="submit">Submit</button> -->
-        <!-- </div> -->
+    <!-- <1!-- Eingabemaske --1> -->
+    <!-- <div> -->
+    <!--     <label for="title">Title:</label> -->
+    <!--     <input type=text" name="title" id="tilte"> -->
+    <!-- </div> -->
+    <!-- <div> -->
+    <!--     <label for="conten">Content:</label> -->
+    <!--     <textarea rows="5" name="content" id="content"></textarea> -->
+    <!-- </div> -->
+    <!-- <div> -->
+    <!--     <button type="submit">Submit</button> -->
+    <!-- </div> -->
 
-        <!-- Searchbar -->
-        <div>
-            <form method="GET" action="search">
-                <div>
-                    <label for="query">Name</label>
-                    <input type="text" name="query" id="query">
-                </div>
-                <button type="submit">Search</button>
-            </form>
-        </div>
-
-        <section class="content">
-            {% for rezept in rezepte %}
+    <!-- Searchbar -->
+    <div>
+        <form method="GET" action="search">
             <div>
-                <a href="{{rezept.link}}">
-                    <img src="{{url_for('static', filename=rezept.thumbnail)}}">
-                </a>
+                <label for="query">Name</label>
+                <input type="text" name="query" id="query">
             </div>
-            <div>
-                <a href="{{rezept.link}}">{{rezept.titel}}</a><br>
-            </div>
-            {% endfor %}
-
-        </section>
+            <button type="submit">Search</button>
+        </form>
     </div>
-    {% endblock %}
+
+    <section class="content">
+        {% for rezept in rezepte %}
+        <div>
+            <a href="{{rezept.link}}">
+                <img src="{{url_for('static', filename=rezept.thumbnail)}}">
+            </a>
+        </div>
+        <div>
+            <a href="{{rezept.link}}">{{rezept.titel}}</a><br>
+        </div>
+        {% endfor %}
+
+    </section>
+</div>
+{% endblock %}
