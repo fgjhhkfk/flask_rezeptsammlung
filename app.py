@@ -34,7 +34,8 @@ def home():
 
 @app.route('/rezept.html')
 def rezept():
-    return render_template('rezept.html')
+    rezepte = Rezepte.query.all()
+    return render_template('rezept.html', rezepte=rezepte)
 
 
 @app.route('/main.html', methods=['GET', 'POST'])
