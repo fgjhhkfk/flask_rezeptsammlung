@@ -4,7 +4,6 @@
     <div>
         <form method="GET" action="search">
             <div>
-                <!-- <label for="query">Name</label> -->
                 <input type="text" name="query" id="query">
                 <button type="submit">Search</button>
             </div>
@@ -14,12 +13,12 @@
     <section class="content">
         {% for rezept in rezepte %}
         <div>
-            <a href="{{rezept.link}}">
+            <a href="rezept/{{rezept.id}}">
                 <img src="{{url_for('static', filename=rezept.thumbnail)}}">
             </a>
         </div>
         <div>
-            <a href="{{rezept.link}}">{{rezept.titel}}</a><br>
+            <a href="rezept/{{rezept.id}}">{{rezept.titel}}</a><br>
         </div>
         {% endfor %}
 

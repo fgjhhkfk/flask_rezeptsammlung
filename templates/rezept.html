@@ -1,39 +1,13 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="zubereitung">
-    <FONT SIZE=4 STYLE="font-size: 16pt"><B>Risotto mit Garneelen</B></FONT>
-    <p><img src="../bilder/Risotto_mit_Garneelen.jpg" align="center" width="100%" border="0"><br clear="left"><br>
-    <P><B>Zubereitung:</B></P>
-    <P>
-    Zwiebel würfelig schneiden. Zucchini in dünne Streifen schneiden, getrocknete Tomaten abtropfen lassen (Öl für Garnelen unbedingt aufheben!) mit Küchenkrepp abtupfen und in kleine Stücke schneiden. Gemüsebrühe aufkochen lassen und heiß halten.
-    </P>
-    <P>
-    Für die Garnelen das Öl von den getrockneten Tomaten mit Knoblauch, Basilikum, Salz und Pfeffer mischen. Die Garnelen darin marinieren.
-    </P>
-    <P>
-    Währenddessen in einem breiten beschichteten Topf die Zwiebeln in 2 EL Butter anschwitzen, wenn die Zwiebeln glasig sind, den Reis dazugeben und diesen unter ständigem Rühren ebenfalls glasig anschwitzen. Anschließend mit Weißwein ablöschen. Die Temperatur zurücknehmen und weiter rühren, bis der Reis die Flüssigkeit aufgenommen hat. Nun die Zucchini untermischen. Mit ¼ Liter heißer Brühe aufgießen und weiter rühren bis die Flüssigkeit vollständig vom Reis aufgenommen wurde. Diesen Vorgang so lange wiederholen, bis der Reis gar, aber noch im Kern bissfest ist. Vor dem letzten Aufguss die getrockneten Tomaten dazugeben. 1 EL Butter und geriebenen Parmesan unterheben, das Gericht soll cremig uns sämig sein.
-    </P>
-    <P>
-    Wenn das Risotto fertig ist, noch die Garnelen in Olivenöl braten.
-    </P>
-</div>
-<div class="zutaten">
-    <B>Zutaten (4):</B><BR>
-    <P>
-    3EL Butter<BR>
-    400g Reis<BR>
-    1/4l Weißwein, trockener<BR>
-    3/4l Gemüsebrühe evtl. auch etwas mehr<BR>
-    1 Zwiebel(n) (alternativ: 4 Schalotten)<BR>
-    1 Zucchini<BR>
-    1 Glas sonnengetrocknete Tomaten in Öl<BR>
-    Basilikum<BR>
-    2 Knoblauchzehen<BR>
-    1 Handvoll Parmesan<BR>
-    2 EL Olivenöl<BR>
-    12 Garnelen, roh, geschält und entdarmt<BR>
-    Salz und Pfeffer <BR>
-    </P>
-</div>
+        <div>
+            {{rezept.titel}}
+        </div>
+        <div class="zubereitung">
+            {{rezept.zubereitung}}
+        </div>
+        <div class="zutaten">
+            {{rezept.zutaten}}
+        </div>
 {% endblock %}
