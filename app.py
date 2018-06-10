@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, url_for, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
-
+from forms import RezeptForm
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///foobar.sqlite'
+app.config['SECRET_KEY'] = '1243124312431243'
 
 db = SQLAlchemy(app)
 
@@ -61,6 +62,24 @@ def search():
     rezepte = Rezepte.query.filter(Rezepte.zutaten.like
                                    ("%" + request.args.get('query') + "%"))
     return render_template('main.html', rezepte=rezepte)
+
+
+@app.route('/neues_rezept', methods=['GET', 'POST'])
+def neues_rezept():
+    form = RezeptForm()
+    if form.validate_on_submit():
+        rezept = Rezepte(titel=form.titel.data,
+                         zutaten=form.zutaten.data,
+                         zubereitung=form.zubereitung.data,
+                         kategorie=form.kategorie.data,
+                         tags=form.tags.data,
+                         thumbnail='./bilder/thumbnails/Piraten.png',
+                         bild='./bilder/Piraten.png')
+        db.session.add(rezept)
+        db.session.commit()
+        flash('Rezept erfolgreich erstellt!', 'success')
+        return redirect('/')
+    return render_template('neues_rezept.html', form=form)
 
 
 if __name__ == '__main__':
