@@ -27,12 +27,6 @@ def home():
     return render_template('home.html')
 
 
-@app.route('/rezept/<int:id>/')
-def rezept(id):
-    rezept = Rezepte.query.get_or_404(id)
-    return render_template('rezept.html', rezept=rezept)
-
-
 @app.route('/main', methods=['GET', 'POST'])
 def main():
     rezepte = Rezepte.query.filter(Rezepte.kategorie == 'Main')
@@ -64,7 +58,35 @@ def search():
     return render_template('main.html', rezepte=rezepte)
 
 
-@app.route('/neues_rezept', methods=['GET', 'POST'])
+@app.route('/rezept/<int:id>/')
+def rezept(id):
+    rezept = Rezepte.query.get_or_404(id)
+    return render_template('rezept.html', rezept=rezept)
+
+
+@app.route('/rezept/<int:id>/update', methods=['GET', 'POST'])
+def rezept_update(id):
+    rezept = Rezepte.query.get_or_404(id)
+    form = RezeptForm()
+    if form.validate_on_submit():
+        rezept.titel = form.titel.data
+        rezept.zutaten = form.zutaten.data
+        rezept.zubereitung = form.zubereitung.data
+        rezept.kategorie = form.kategorie.data
+        rezept.tags = form.tags.data
+        db.session.commit()
+        flash('Das Rezept wurde erfolgreich geaendert!')
+        return redirect(url_for('rezept', id=rezept.id))
+    elif request.method == 'GET':
+        form.titel.data = rezept.titel
+        form.zutaten.data = rezept.zutaten
+        form.zubereitung.data = rezept.zubereitung
+        form.kategorie.data = rezept.kategorie
+        form.tags.data = rezept.tags
+    return render_template('neues_rezept.html', form=form)
+
+
+@app.route('/rezept/neu', methods=['GET', 'POST'])
 def neues_rezept():
     form = RezeptForm()
     if form.validate_on_submit():
@@ -77,7 +99,7 @@ def neues_rezept():
                          bild='./bilder/Piraten.png')
         db.session.add(rezept)
         db.session.commit()
-        flash('Rezept erfolgreich erstellt!', 'success')
+        flash('Rezept erfolgreich erstellt!')
         return redirect('/')
     return render_template('neues_rezept.html', form=form)
 
