@@ -1,21 +1,26 @@
-{% extends "layout.html" %}
+{% extends "layout_rezept.html" %}
 
 {% block content %}
-    <!-- Knopf zum Aendern des Rezepts -->
-    <div>
-        <a href="{{ url_for('rezept_update', id=rezept.id) }}">Aendern</a>
-    </div>
+<!-- Knopf zum Aendern des Rezepts -->
+<div>
+    <a href="{{ url_for('rezept_update', id=rezept.id) }}">Aendern</a>
+</div>
 
+<div class="canvas">
     <!-- Darstellung des Rezepts -->
-    <div>
+    <div class="title">
         {{rezept.titel}}
     </div>
-    <p><img src={{url_for('static', filename='bilder/' + rezept.bild)}} align="center" border="0"><br clear="left"><br></p>
+    <div>
+        <p><img src={{url_for('static', filename='bilder/' + rezept.bild)}}></p>
+    </div>
     <div class="zubereitung">
-        <pre>{{rezept.zubereitung}}</pre>
+        <strong>Zubereitung:</strong>
+        <pre class="pre_zubereitung">{{rezept.zubereitung}}</pre>
     </div>
-    <div class="zutaten">
-        {{rezept.zutaten|safe}}
-    </div>
+</div>
+<div class="zutaten">
+    <pre class="pre_zutaten">{{rezept.zutaten}}</pre>
+</div>
 
 {% endblock %}
