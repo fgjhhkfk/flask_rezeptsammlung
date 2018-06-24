@@ -1,3 +1,5 @@
+import os
+from PIL import Image
 from flask import Flask, render_template, request, url_for, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
 from forms import RezeptForm
@@ -64,11 +66,40 @@ def rezept(id):
     return render_template('rezept.html', rezept=rezept)
 
 
+def save_picture(form_picture):
+    picture_fn = form_picture.filename
+    picture_path = os.path.join(app.root_path, 'static/bilder', picture_fn)
+    thumbnail_path = os.path.join(app.root_path, 'static/bilder/thumbnails', picture_fn)
+
+    output_size = (800, 600)
+    output_size_thumbnail = (200, 150)
+
+    img = Image.open(form_picture)
+    img.thumbnail(output_size)
+    img.save(picture_path)
+
+    thmbnl = Image.open(form_picture)
+    thmbnl.thumbnail(output_size_thumbnail)
+    thmbnl.save(thumbnail_path)
+
+    return picture_fn
+
+
 @app.route('/rezept/<int:id>/update', methods=['GET', 'POST'])
 def rezept_update(id):
     rezept = Rezepte.query.get_or_404(id)
     form = RezeptForm()
     if form.validate_on_submit():
+        if form.bild.data:
+            picture_file = save_picture(form.bild.data)
+            rezept.bild = picture_file
+            rezept.thumbnail = picture_file
+        elif rezept.bild:
+            rezept.bild = rezept.bild
+        else:
+            rezept.bild = "Piraten.png"
+            rezept.thumbnail = "Piraten.png"
+
         rezept.titel = form.titel.data
         rezept.zutaten = form.zutaten.data
         rezept.zubereitung = form.zubereitung.data
@@ -95,8 +126,15 @@ def neues_rezept():
                          zubereitung=form.zubereitung.data,
                          kategorie=form.kategorie.data,
                          tags=form.tags.data,
-                         thumbnail='./bilder/thumbnails/Piraten.png',
-                         bild='./bilder/Piraten.png')
+                         )
+        if form.bild.data:
+            picture_file = save_picture(form.bild.data)
+            rezept.bild = picture_file
+            rezept.thumbnail = picture_file
+        else:
+            rezept.bild = "Piraten.png"
+            rezept.thumbnail = "Piraten.png"
+
         db.session.add(rezept)
         db.session.commit()
         flash('Rezept erfolgreich erstellt!')

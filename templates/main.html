@@ -6,7 +6,7 @@
                 <input type="text" name="query" id="query">
                 <button type="submit">Search</button>
         </form>
-        <form method="GET" action="neues_rezept">
+        <form method="GET" action="rezept/neu">
                 <button type="submit">Neues Rezept</button>
         </form>
     </div>
@@ -15,7 +15,7 @@
         {% for rezept in rezepte %}
         <div>
             <a href="rezept/{{rezept.id}}">
-                <img src="{{url_for('static', filename=rezept.thumbnail)}}">
+                <img src="{{url_for('static', filename="bilder/thumbnails/" + rezept.thumbnail)}}">
             </a>
         </div>
         <div>

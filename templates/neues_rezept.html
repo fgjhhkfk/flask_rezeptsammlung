@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 <div>
-    <form method="POST" action="">
+    <form method="POST" action="" enctype="multipart/form-data">
         <div>
             {{ form.hidden_tag() }}
         </div>
@@ -30,6 +30,16 @@
             {{ form.tags.label() }}
             <BR>
             {{ form.tags() }}
+        </div>
+        <div>
+            {{ form.bild.label() }}
+            <BR>
+            {{ form.bild() }}
+            {% if form.bild.errors %}
+                {% for error in form.bild.errors %}
+                    <span> {{ error }} </span>
+                {% endfor %}
+            {% endif %}
         </div>
         <div>
             {{ form.submit() }}
