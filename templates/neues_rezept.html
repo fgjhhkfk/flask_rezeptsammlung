@@ -2,34 +2,14 @@
 {% block content %}
 <div>
     <form method="POST" action="" enctype="multipart/form-data">
+        <div class="canvas">
         <div>
             {{ form.hidden_tag() }}
         </div>
         <div>
             {{ form.titel.label() }}
             <BR>
-            {{ form.titel() }}
-        </div>
-        <div>
-            {{ form.zutaten.label() }}
-            <BR>
-            {{ form.zutaten() }}
-        </div>
-        <div>
-        <div>
-            {{ form.zubereitung.label() }}
-            <BR>
-            {{ form.zubereitung() }}
-        </div>
-        <div>
-            {{ form.kategorie.label() }}
-            <BR>
-            {{ form.kategorie() }}
-        </div>
-        <div>
-            {{ form.tags.label() }}
-            <BR>
-            {{ form.tags() }}
+            {{ form.titel(cols="120") }}
         </div>
         <div>
             {{ form.bild.label() }}
@@ -41,8 +21,29 @@
                 {% endfor %}
             {% endif %}
         </div>
+        <div class="zubereitung">
+            {{ form.zubereitung.label() }}
+            <BR>
+            {{ form.zubereitung(cols="100", rows="20") }}
+        </div>
+        <div>
+            {{ form.kategorie.label() }}
+            <BR>
+            {{ form.kategorie()}}
+        </div>
+        <div>
+            {{ form.tags.label() }}
+            <BR>
+            {{ form.tags(cols="120") }}
+        </div>
         <div>
             {{ form.submit() }}
+        </div>
+        </div>
+        <div class="zutaten">
+            {{ form.zutaten.label() }}
+            <BR>
+            {{ form.zutaten(cols="35", rows="20") }}
         </div>
     </form>
 </div>
