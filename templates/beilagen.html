@@ -1,15 +1,6 @@
-{% extends "layout2.html" %}
+{% extends "layout_main.html" %}
 
 {% block content %}
-    <div>
-        <form method="GET" action="search">
-            <div>
-                <input type="text" name="query" id="query">
-                <button type="submit">Search</button>
-            </div>
-        </form>
-    </div>
-
     <section class="content">
         {% for rezept in rezepte %}
         <div>

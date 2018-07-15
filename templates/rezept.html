@@ -1,11 +1,24 @@
 {% extends "layout_rezept.html" %}
 
 {% block content %}
-<!-- Knopf zum Aendern des Rezepts -->
-<div>
-    <a href="{{ url_for('rezept_update', id=rezept.id) }}">Aendern</a>
-</div>
+        <!-- <div class="search-box"> -->
+        <!--     <form class="add-form" method="GET" action='rezept_update'> -->
+        <!--         <button class="wrench-btn"> -->
+        <!--             <i class="fas fa-wrench"></i> -->
+        <!--         </button> -->
+        <!--     </form> -->
+        <!-- </div> -->
+        <!-- <1!-- Knopf zum Aendern des Rezepts --1> -->
+        <!-- <div> -->
+        <!--     <a href="{{ url_for('rezept_update', id=rezept.id) }}">Aendern</a> -->
+        <!-- </div> -->
 
+<!-- Knopf zum Aendern des Rezepts -->
+<div class="search-box">
+    <a class="wrench-btn" href="{{ url_for('rezept_update', id=rezept.id) }}">
+        <i class="fas fa-wrench"></i>
+    </a>
+</div>
 <div class="canvas">
     <!-- Darstellung des Rezepts -->
     <div class="title">

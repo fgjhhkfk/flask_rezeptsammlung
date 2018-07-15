@@ -3,19 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/rezept.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/all.css') }}">
         <title>Flask App</title>
     </head>
     <body>
-        <!-- <header> -->
-        <!--     <div class="container"> -->
-        <!--         <1!-- <h1 class"logo">Flask APP</h1> --1> -->
-        <!--     </div> -->
-        <!-- </header> -->
-
-        <!-- <div class="cont"> -->
-            {% block content %}
-            {% endblock %}
-        <!-- </div> -->
+        {% block content %}
+        {% endblock %}
     </body>
 </html> 
 

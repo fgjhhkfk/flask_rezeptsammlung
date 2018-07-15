@@ -1,0 +1,222 @@
+html {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--dark);
+}
+
+body {
+  /* background: #0088ff; */
+  margin: 0px 0px;
+  line-height: 1.4;
+}
+
+.wrapper {
+    margin: 30px 50px;
+    margin-top: 0px;
+    /* display: grid; */
+    /* grid-gap: 20px; */
+}
+
+/* Search Bar */
+*{
+    /* margin: 0; */
+    /* padding: 0; */
+    --search-height: 46px;
+}
+
+/* .search-wrapper{ */
+
+/* } */
+
+.search-box{
+    display: grid;
+    grid-template-columns: 1fr 1fr 10fr 10fr;
+    /* position: absolute; */
+    background: #2f3640;
+    height: var(--search-height);
+    /* width: 310px; */
+    /* border-radius: 10px 10px 10px 10px; */
+    padding: 0;
+    margin: 0;
+    line-height: var(--search-height)
+}
+.search-form{
+    width: 400px;
+    height: inherit;
+}
+.add-form{
+    width: 44px;
+    height: inherit;
+}
+.search-txt{
+    display: block;
+    width: 300px;
+    height: 40px;
+    margin: 2px;
+    /* padding: 11px 0px 11px 11px; */
+    /* margin: 2px 30px px 2px; */
+    border: none;
+    background-color: #eeeeee;
+    outline: none;
+    float: left;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.search-btn {
+    background-color: #2f3640;
+    color: white;
+    border: none;
+    margin: 2px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.search-icon img{
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    margin: 3px;
+    margin-left: 10px;
+    margin-right: 5px;
+    padding: 0 0 0 5px;
+    color: #888888;
+}
+
+.add-icon img{
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    margin: 3px;
+    margin-left: 15px;
+}
+
+
+/* Navigation */
+.navigation ul{
+    display: grid;
+    padding: 0;
+    grid-gap: 20px;
+    list-style: none;
+    grid-template-columns: repeat(5,1fr);
+    justify-items: stretch;
+    align-items: stretch;
+}
+
+.navigation a{
+    /* background: #aaaaaa; */
+    display: block;
+    text-decoration: none;
+    padding: 0.8rem;
+    text-align: center;
+    color: #f0f0f0;
+    font-size: 2.4em;
+}
+.navigation li a:hover {
+    font-size: 2.4em;
+    text-shadow: 0 0px 2px rgba(0,0,0,0.5);
+}
+
+.navitem1 {
+    background: #777777;
+    box-shadow: 0px 0px 2px 2px #555555;
+}
+.navitem1:hover{
+    background: #777777;
+    box-shadow: 2px 2px 3px 3px #222222;
+}
+.navitem2 {
+    background: #00ff00;
+    box-shadow: 0px 0px 2px 2px #00dd00;
+}
+.navitem2:hover{
+    background: #00ff00;
+    box-shadow: 2px 2px 3px 3px #222222;
+}
+.navitem3 {
+    background: #ff0055;
+    box-shadow: 0px 0px 2px 2px #dd0033;
+}
+.navitem3:hover{
+    background: #ff0055;
+    box-shadow: 2px 2px 3px 3px #222222;
+}
+.navitem4 {
+    background: #ff8815;
+    box-shadow: 0px 0px 2px 2px #dd6603;
+}
+.navitem4:hover{
+    background: #ff8815;
+    box-shadow: 2px 2px 3px 3px #222222;
+}
+.navitem5 {
+    background: #0000ff;
+    box-shadow: 0px 0px 2px 2px #0000dd;
+}
+.navitem5:hover{
+    background: #0000ff;
+    box-shadow: 2px 2px 3px 3px #222222;
+}
+
+/* Content */
+.content {
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr 6fr;
+    grid-gap: 1em;
+    grid-auto-rows: minmax(100px, auto);
+    justify-items: stretch;
+    align-items: center;
+}
+
+.content a {
+    font-size: 1.7em;
+    text-decoration: none;
+    color: #333333;
+}
+
+.content img{
+    /* height: 100px; */
+    width: 100px;
+}
+
+/* .search { */
+/*     background-color: #aaaaaa; */
+/*     border: none; */
+/*     color: white; */
+/*     text-align: center; */
+/*     text-decoration: none; */
+/*     display: inline-block; */
+/*     font-size: 16px; */
+/*     /1* margin: 4px 2px; *1/ */
+/*     cursor: pointer; */
+/*     height:200px; */
+/*     width: 200px; */
+/*     border-radius: 0 0 15px 15px; */
+/*     vertical-align: middle; */
+/* } */
+
+/* .button { */
+/*     vertical-align: middle; */
+/*     display: inline-block; */
+/*     background-color: #ffffff; */
+/*     border: none; */
+/*     /1* color: white; *1/ */
+/* } */
+
+/* .button img { */
+/*     height: 30px; */
+/*     width: 30px; */
+/* } */
+
+
+
+@media screen and (max-width: 1080px) {
+    .navigation ul{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .content {
+        display: grid;
+        grid-template-columns: 1fr 6fr;
+    }
+}
