@@ -114,7 +114,7 @@ def rezept_update(id):
         form.zubereitung.data = rezept.zubereitung
         form.kategorie.data = rezept.kategorie
         form.tags.data = rezept.tags
-    return render_template('neues_rezept.html', form=form)
+    return render_template('neues_rezept.html', rezept=rezept, form=form)
 
 
 @app.route('/rezept/neu', methods=['GET', 'POST'])
