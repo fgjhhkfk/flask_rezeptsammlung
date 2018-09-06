@@ -56,7 +56,12 @@ def beilagen():
 @app.route('/search')
 def search():
     rezepte = Rezepte.query.filter(Rezepte.zutaten.like
-                                   ("%" + request.args.get('query') + "%"))
+                                   ("%" + request.args.get('query') + "%")
+                                   | Rezepte.titel.like
+                                   ("%" + request.args.get('query') + "%")
+                                   | Rezepte.tags.like
+                                   ("%" + request.args.get('query') + "%")
+                                   )
     return render_template('main.html', rezepte=rezepte)
 
 
