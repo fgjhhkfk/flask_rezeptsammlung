@@ -5,7 +5,7 @@
         {% for rezept in rezepte %}
         <div>
             <a href="rezept/{{rezept.id}}">
-                <img src="{{url_for('static', filename=rezept.thumbnail)}}">
+                <img src="{{url_for('static', filename="bilder/thumbnails/" + rezept.thumbnail)}}">
             </a>
         </div>
         <div>
