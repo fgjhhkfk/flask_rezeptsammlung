@@ -4,7 +4,12 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/rezept.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/all.css') }}">
-        <title>Flask App</title>
+        <link rel="icon" href="{{ url_for('static', filename='bilder/thumbnails/Piraten.png') }}">
+        {% if rezept %}
+            <title>{{rezept.titel}}</title>
+        {% else %}
+            <title>neues Rezept</title>
+        {% endif %}
     </head>
     <body>
         {% block content %}
