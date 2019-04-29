@@ -1,4 +1,5 @@
 import os
+import time
 from PIL import Image
 from flask import Flask, render_template, request, url_for, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
@@ -80,10 +81,11 @@ def save_picture(form_picture):
     output_size_thumbnail = (200, 150)
 
     img = Image.open(form_picture)
+    thmbnl = img
+
     img.thumbnail(output_size)
     img.save(picture_path)
 
-    thmbnl = Image.open(form_picture)
     thmbnl.thumbnail(output_size_thumbnail)
     thmbnl.save(thumbnail_path)
 
