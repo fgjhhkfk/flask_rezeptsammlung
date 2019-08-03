@@ -1,0 +1,65 @@
+{% block content %}
+<div>
+    <form method="POST" action="" enctype="multipart/form-data">
+        <div class="canvas">
+            <div>
+                {{ form.hidden_tag() }}
+            </div>
+            <div>
+                {{ form.titel.label() }}
+                <BR>
+                {{ form.titel(cols="120") }}
+            </div>
+            <div>
+                {{ form.text.label() }}
+                <BR>
+                {{ form.text(cols="100", rows="20") }}
+            </div>
+            <div>
+                {{ form.bild1.label() }}
+                <BR>
+                {{ form.bild1() }}
+                {% if form.bild1.errors %}
+                {% for error in form.bild1.errors %}
+                <span> {{ error }} </span>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <div>
+                {{ form.bild2.label() }}
+                <BR>
+                {{ form.bild2() }}
+                {% if form.bild2.errors %}
+                {% for error in form.bild2.errors %}
+                <span> {{ error }} </span>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <div>
+                {{ form.bild3.label() }}
+                <BR>
+                {{ form.bild3() }}
+                {% if form.bild3.errors %}
+                {% for error in form.bild3.errors %}
+                <span> {{ error }} </span>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <div>
+                {{ form.bild4.label() }}
+                <BR>
+                {{ form.bild4() }}
+                {% if form.bild4.errors %}
+                {% for error in form.bild4.errors %}
+                <span> {{ error }} </span>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <div>
+                <BR>
+                {{ form.submit() }}
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock content %}
