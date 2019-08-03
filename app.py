@@ -94,8 +94,8 @@ def save_picture(form_picture):
 
 def save_picture_blog(form_picture):
     picture_fn = form_picture.filename
-    picture_path = os.path.join(app.root_path, '/home/hjk/skripte/shell/test/blog', picture_fn)
-    thumbnail_path = os.path.join(app.root_path, '/home/hjk/skripte/shell/test/blog/', 'thumb_'+picture_fn)
+    picture_path = os.path.join(app.root_path, 'static/bilder/reiseblog', picture_fn)
+    thumbnail_path = os.path.join(app.root_path, 'static/bilder/reiseblog', 'thumb_'+picture_fn)
 
     output_size = (800, 600)
     output_size_thumbnail = (200, 150)
@@ -168,7 +168,7 @@ def neues_rezept():
 
 @app.route('/blog')
 def blog():
-    return render_template('/home/hjk/skripte/shell/test/blog.html')
+    return render_template('blog.html')
 
 @app.route('/new_blog_entry', methods=['GET', 'POST'])
 def new_blog_entry():
@@ -176,7 +176,7 @@ def new_blog_entry():
 
     # Die Klasse ab hier neu machen!!!
     if form.validate_on_submit():
-        with open('/home/hjk/skripte/shell/test/blog/.drafts/test.html', 'w') as f:
+        with open('/home/pi/temp_blog.html', 'w') as f:
             print(form.text.data)
             f.write("\n<p>\n")
             f.write("<strong>")
@@ -214,7 +214,7 @@ def new_blog_entry():
                 f.write("<a href='"+picture_file+"'>\n")
                 f.write("<img src='"+thumbnail_file+"'>\n")
                 f.write("</a>\n")
-        return redirect('/home/hjk/skripte/shell/test/blog.html')
+        return redirect('blog')
 
     return render_template('new_blog_entry.html', form=form)
 
