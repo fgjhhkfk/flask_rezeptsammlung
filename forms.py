@@ -13,3 +13,13 @@ class RezeptForm(FlaskForm):
     tags = StringField('Tags')
     bild = FileField('Bild', validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Hochladen')
+
+
+class BlogEntryForm(FlaskForm):
+    titel = StringField('Titel')
+    text = TextAreaField('Text')
+    bild1 = FileField('Bild', validators=[FileAllowed(['jpg', 'png'])])
+    bild2 = FileField('Bild', validators=[FileAllowed(['jpg', 'png'])])
+    bild3 = FileField('Bild', validators=[FileAllowed(['jpg', 'png'])])
+    bild4 = FileField('Bild', validators=[FileAllowed(['jpg', 'png'])])
+    submit = SubmitField('Speichern')
