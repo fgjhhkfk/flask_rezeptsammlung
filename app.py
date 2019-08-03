@@ -3,7 +3,7 @@ import time
 from PIL import Image
 from flask import Flask, render_template, request, url_for, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
-from forms import RezeptForm
+from forms import RezeptForm, BlogEntryForm
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///foobar.sqlite'
@@ -92,6 +92,24 @@ def save_picture(form_picture):
     return picture_fn
 
 
+def save_picture_blog(form_picture):
+    picture_fn = form_picture.filename
+    picture_path = os.path.join(app.root_path, '/home/hjk/skripte/shell/test/blog', picture_fn)
+    thumbnail_path = os.path.join(app.root_path, '/home/hjk/skripte/shell/test/blog/', 'thumb_'+picture_fn)
+
+    output_size = (800, 600)
+    output_size_thumbnail = (200, 150)
+
+    img = Image.open(form_picture)
+    img.thumbnail(output_size)
+    img.save(picture_path)
+
+    thmbnl = Image.open(form_picture)
+    thmbnl.thumbnail(output_size_thumbnail)
+    thmbnl.save(thumbnail_path)
+
+    return picture_path, thumbnail_path
+
 @app.route('/rezept/<int:id>/update', methods=['GET', 'POST'])
 def rezept_update(id):
     rezept = Rezepte.query.get_or_404(id)
@@ -147,6 +165,58 @@ def neues_rezept():
         flash('Rezept erfolgreich erstellt!')
         return redirect('/')
     return render_template('neues_rezept.html', form=form)
+
+@app.route('/blog')
+def blog():
+    return render_template('/home/hjk/skripte/shell/test/blog.html')
+
+@app.route('/new_blog_entry', methods=['GET', 'POST'])
+def new_blog_entry():
+    form = BlogEntryForm()
+
+    # Die Klasse ab hier neu machen!!!
+    if form.validate_on_submit():
+        with open('/home/hjk/skripte/shell/test/blog/.drafts/test.html', 'w') as f:
+            print(form.text.data)
+            f.write("\n<p>\n")
+            f.write("<strong>")
+            f.write(form.titel.data)
+            f.write("</strong>")
+            f.write("\n</p>\n")
+            f.write("\n<p>\n")
+            f.write(form.text.data)
+            f.write("\n</p>\n")
+            if form.bild1.data:
+                picture_file, thumbnail_file = save_picture_blog(form.bild1.data)
+                print(picture_file)
+                print(thumbnail_file)
+                f.write("<a href='"+picture_file+"'>\n")
+                f.write("<img src='"+thumbnail_file+"'>\n")
+                f.write("</a>\n")
+            if form.bild2.data:
+                picture_file, thumbnail_file = save_picture_blog(form.bild2.data)
+                print(picture_file)
+                print(thumbnail_file)
+                f.write("<a href='"+picture_file+"'>\n")
+                f.write("<img src='"+thumbnail_file+"'>\n")
+                f.write("</a>\n")
+            if form.bild3.data:
+                picture_file, thumbnail_file = save_picture_blog(form.bild3.data)
+                print(picture_file)
+                print(thumbnail_file)
+                f.write("<a href='"+picture_file+"'>\n")
+                f.write("<img src='"+thumbnail_file+"'>\n")
+                f.write("</a>\n")
+            if form.bild4.data:
+                picture_file, thumbnail_file = save_picture_blog(form.bild4.data)
+                print(picture_file)
+                print(thumbnail_file)
+                f.write("<a href='"+picture_file+"'>\n")
+                f.write("<img src='"+thumbnail_file+"'>\n")
+                f.write("</a>\n")
+        return redirect('/home/hjk/skripte/shell/test/blog.html')
+
+    return render_template('new_blog_entry.html', form=form)
 
 
 if __name__ == '__main__':
