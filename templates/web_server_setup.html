@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>web server setup</title>
+        <style>
+*{
+    background:#222;
+    color: #ddd;
+    font-family: 'courier new';
+    font-family: 'Georgia, serif';
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+
+}
+        code{
+            margin: 0px;
+            padding: 2px 0px 0px 10px;
+            font-family: 'courier new';
+            font-size: 14px;
+            display: block;
+            background:#444;
+        }
+        </style>
+
+    </head>
+    <body>
+        <p>
+        Python Module die installiert werden muessen:
+        </p>
+        <p>
+        <code>
+            sudo pip install flask flask-wtf pillow flask_sqlalchemy<BR>
+            sudo pip install gunicorn<BR>
+        </code>
+        </p>
+
+        <p>
+        <code>
+            sudo apt-get install supervisor
+        </code>
+        </p>
+
+        <p>
+        Konfiguration supervisor:
+        </p>
+
+        <p>
+        <code>
+            sudo vi /etc/supervisor/conf.d/flaskapp.conf
+        </code>
+        </p>
+        <p>
+        <code>
+            [program:flaskapp]<BR>
+            command=gunicorn app:app<BR>
+            directory=/home/pi/python_playground/flaskapp<BR>
+            user=pi<BR>
+            autostart=true<BR>
+            autorestart=true<BR>
+            stopasgroup=true<BR>
+            killasgroup=true<BR>
+        </code>
+        </p>
+        <p>
+        <code>
+            sudo supervisorctl reload<BR>
+        </code>
+        </p>
+        <p>
+        <code>
+            sudo apt-get install nginx<BR>
+            sudo vi /etc/nginx/sites-enabled/flaskapp<BR>
+        </code>
+        </p>
+
+        Konfiguration ngnix:
+
+        <p>
+        <code>
+            server {<BR>
+            location / {<BR>
+            proxy_pass http://localhost:8000;<BR>
+            proxy_set_header Host $host;<BR>
+            proxy_set_header X-Real-IP $remote_addr;<BR>
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;<BR>
+            }<BR>
+            }<BR>
+        </code>
+        </p>
+        <p>
+        <code>
+            sudo service nginx reload
+        </code>
+        </p>
+        <p>
+        Die Dateien des Frameworks liegen unter /home/pi/python_playground/flaskapp
+        </p>
+    </body>
+</html> 
+
