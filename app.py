@@ -95,20 +95,22 @@ def save_picture(form_picture):
 def save_picture_blog(form_picture):
     picture_fn = form_picture.filename
     picture_path = os.path.join(app.root_path, 'static/bilder/reiseblog', picture_fn)
-    thumbnail_path = os.path.join(app.root_path, 'static/bilder/reiseblog', 'thumb_'+picture_fn)
+    thumbnail_fn = 'thumb_'+picture_fn
+    thumbnail_path = os.path.join(app.root_path, 'static/bilder/reiseblog', thumbnail_fn)
 
     output_size = (800, 600)
     output_size_thumbnail = (200, 150)
 
     img = Image.open(form_picture)
+    thmbnl = img
+
     img.thumbnail(output_size)
     img.save(picture_path)
 
-    thmbnl = Image.open(form_picture)
     thmbnl.thumbnail(output_size_thumbnail)
     thmbnl.save(thumbnail_path)
 
-    return picture_path, thumbnail_path
+    return picture_fn, thumbnail_fn
 
 @app.route('/rezept/<int:id>/update', methods=['GET', 'POST'])
 def rezept_update(id):
@@ -190,33 +192,41 @@ def new_blog_entry():
                 picture_file, thumbnail_file = save_picture_blog(form.bild1.data)
                 print(picture_file)
                 print(thumbnail_file)
-                f.write("<a href='"+picture_file+"'>\n")
-                f.write("<img src='"+thumbnail_file+"'>\n")
+                f.write("<a href='/static/bilder/reiseblog/"+picture_file+"'>\n")
+                f.write("<img src='/static/bilder/reiseblog/"+thumbnail_file+"'>\n")
                 f.write("</a>\n")
             if form.bild2.data:
                 picture_file, thumbnail_file = save_picture_blog(form.bild2.data)
                 print(picture_file)
                 print(thumbnail_file)
-                f.write("<a href='"+picture_file+"'>\n")
-                f.write("<img src='"+thumbnail_file+"'>\n")
+                f.write("<a href='/static/bilder/reiseblog/"+picture_file+"'>\n")
+                f.write("<img src='/static/bilder/reiseblog/"+thumbnail_file+"'>\n")
                 f.write("</a>\n")
             if form.bild3.data:
                 picture_file, thumbnail_file = save_picture_blog(form.bild3.data)
                 print(picture_file)
                 print(thumbnail_file)
-                f.write("<a href='"+picture_file+"'>\n")
-                f.write("<img src='"+thumbnail_file+"'>\n")
+                f.write("<a href='/static/bilder/reiseblog/"+picture_file+"'>\n")
+                f.write("<img src='/static/bilder/reiseblog/"+thumbnail_file+"'>\n")
                 f.write("</a>\n")
             if form.bild4.data:
                 picture_file, thumbnail_file = save_picture_blog(form.bild4.data)
                 print(picture_file)
                 print(thumbnail_file)
-                f.write("<a href='"+picture_file+"'>\n")
-                f.write("<img src='"+thumbnail_file+"'>\n")
+                f.write("<a href='/static/bilder/reiseblog/"+picture_file+"'>\n")
+                f.write("<img src='/static/bilder/reiseblog/"+thumbnail_file+"'>\n")
                 f.write("</a>\n")
         return redirect('blog')
 
     return render_template('new_blog_entry.html', form=form)
+
+@app.route('/web_server_setup')
+def web_server_setup():
+    return render_template('web_server_setup.html')
+
+@app.route('/arch_installation')
+def arch_installation():
+    return render_template('arch_installation.html')
 
 
 if __name__ == '__main__':
