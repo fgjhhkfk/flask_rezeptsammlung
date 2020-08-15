@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Installation Arch</title>
+        <style>
+        *{
+            background:#abc;
+            color: #eee;
+            font-family: 'courier new';
+            font-family: 'Georgia, serif';
+            font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+
+        }
+
+        code{
+            margin: 0% 2% 0% 2%;
+            padding: 2px 0px 0px 10px;
+            font-family: 'courier new';
+            font-size: 14px;
+            display: block;
+            background:#111;
+            color: #ccc;
+            border-style: solid;
+            border-width: 1px;
+        }
+        .canvas
+        {
+            position: absolute;
+            left: 10%;
+            top: 50px;
+            width: 80%;
+            background-color: #333;
+            padding: 10px;
+            font-family: "Courier New", Courier, monospace
+        }
+        p,a, h1, h2, h3 {
+            background-color: #333;
+        }
+        html {
+            background: url(../static/bilder/triangles2.png) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="canvas">
+            <h1>
+                Installation von Arch Linux
+            </h1>
+        <p>
+        Die Installation die hier beschrieben wird, richtet sich zum groessten Teil, bis auf einige kleinere Anpassungen, am
+        <a href="https://wiki.archlinux.org/index.php/installation_guide">Arch Wiki</a> aus.
+        <p>
+        Den Installer hier (
+        <a href="https://www.archlinux.org/download/">LINK</a>
+        ) herunterladen, und mit
+        <code>
+            >>> dd bs=4M if=path/to/archlinux.iso of=/dev/sdx status=progress oflag=sync
+        </code>
+        auf einen Datentraeger schreiben.
+        Den Rechner neu starten, und von dem zuvor beschrieben Datentraeger booten.
+
+        </p>
+        <p>
+        <H3>
+            Tastaturlayout:
+        </H3>
+        Standarmaessig wird das amerikanische Layout geladen.
+        Im Grunde bin ich zufrieden damit, falls das aber mal geaendert werden soll, kann man mit 
+        </p>
+        <p>
+        <code>
+            loadkeys de-latin1
+        </code>
+        </p>
+        entsprechend anpassen
+        <p>
+        Vor der Partitionierung der Festplatte, muss unterschieden werden ob per UEFI oder BIOS gebootet wurde.
+        Das kann durch 
+        </p>
+        <p>
+        <code>
+            >>> ls /sys/firmware/efi/efivars
+        </code>
+        </p>
+        <p>
+        gemacht werden. Wird das Verzeichnis ohne Fehlermeldung aufgelistet, kann davon ausgegangen werden, 
+        dass es sich bei dem System um ein UEFI System handelt.
+        </p>
+        <h3>
+            Netzwerkverbindung
+        </h3>
+        <p>
+        Waehrend der Installation muss eine Netzwerkverbindung bestehen. Prinzipiell sollte das auch mit W-Lan
+        funktionieren, hat es aber bei mir auch nach einigen Versuchen nicht getan.<BR>
+        Daher also die Installation am Kabel (ist auch die nobrainer Methode).
+        Kabel rein --> fertig; Aber nur wenn DHCP am Router konfiguriert ist. Falls die IP Adresse statisch sein soll,
+        oder sich per W-Lan verbunden werden soll, gibt es dazu im WIKI auch Hilfe.<BR>
+        Ob das mit der Netzwerkverbindung auch geklappt hat, kann via Ping auf z.B. archlinux.org festgestellt werden.
+        </p>
+        <h3>
+            Systemzeit einstellen
+        </h3>
+        <p>
+        Um die Systemzeit einzustellen, muss erstmal die richtige Zeitzone verlinkt werden.
+        Verfuegbare Zeitzonen koennen mit 
+        <p>
+        <code>
+            >>> timedatectl list-timezones
+        </code>
+        </p>
+        angezeigt werden.<BR>
+        Mit 
+        <p>
+        <code>
+            >>> ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+        </code>
+        </p>
+        wird dann auf die richtige Zeitzone verlinkt.<BR>
+        Mit
+
+        <p>
+        <code>
+            >>> timedatectl set-ntp true
+        </code>
+        </p>
+
+        wird dann die Netzwerksynchronisierung gestartet.
+
+        <h3>
+        System aufsetzen
+        </h3>
+        </p>
+        <p>
+        Konfiguration
+        </p>
+        <p>
+        SW installieren
+        </p>
+        </div>
+    </body>
+</html>
