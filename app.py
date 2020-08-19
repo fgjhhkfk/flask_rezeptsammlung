@@ -112,6 +112,7 @@ def save_picture_blog(form_picture):
 
     return picture_fn, thumbnail_fn
 
+
 @app.route('/rezept/<int:id>/update', methods=['GET', 'POST'])
 def rezept_update(id):
     rezept = Rezepte.query.get_or_404(id)
@@ -168,9 +169,11 @@ def neues_rezept():
         return redirect('/')
     return render_template('neues_rezept.html', form=form)
 
+
 @app.route('/blog')
 def blog():
     return render_template('blog.html')
+
 
 @app.route('/new_blog_entry', methods=['GET', 'POST'])
 def new_blog_entry():
@@ -220,9 +223,16 @@ def new_blog_entry():
 
     return render_template('new_blog_entry.html', form=form)
 
+
+@app.route('/help')
+def help():
+    return render_template('help.html')
+
+
 @app.route('/web_server_setup')
 def web_server_setup():
     return render_template('web_server_setup.html')
+
 
 @app.route('/arch_installation')
 def arch_installation():
